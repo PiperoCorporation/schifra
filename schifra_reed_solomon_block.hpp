@@ -305,6 +305,16 @@ namespace schifra
          }
       }
 
+      template <typename T, std::size_t code_length, std::size_t fec_length>
+      inline void copy(const block<code_length,fec_length>& src_block,
+                            T dest_data[], const std::size_t dst_length)
+      {
+         for (std::size_t i = 0; i < dst_length; ++i, ++dest_data)
+         {
+            (*dest_data) = static_cast<T>(src_block[i]);
+         }
+      }
+
       template <std::size_t code_length, std::size_t fec_length>
       inline std::ostream& operator<<(std::ostream& os, const block<code_length,fec_length>& rs_block)
       {
